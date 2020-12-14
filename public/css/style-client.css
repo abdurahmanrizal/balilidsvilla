@@ -1,0 +1,96 @@
+.futura {
+    font-family: "futura";
+}
+.nav-link {
+    color: #267dad !important;
+}
+
+.orange {
+    color: #267dad;
+}
+
+.sanshita-swashed {
+    /* font-family: "Sansita Swashed", cursive; */
+    font-family: "Abhaya Libre", serif;
+}
+
+.block-margin {
+    margin-left: -10%;
+    margin-top: 7.5%;
+}
+
+.bg-orange {
+    background-color: #267dad;
+}
+
+.about-banner {
+    border-radius: 10px;
+    height: 479px;
+}
+
+.card-service {
+    margin-top: 10%;
+}
+
+.card-villa {
+    width: 20rem;
+    border-radius: 10px;
+}
+
+.card-activity {
+    margin-top: 10%;
+}
+.list-group-item {
+    border: inherit !important;
+}
+.embed-responsive {
+    height: 25rem;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+a.villa-hover:hover {
+    text-decoration: none;
+}
+
+@media (max-width: 575.98px) {
+    .about-banner {
+        /* border-radius: 10px; */
+        height: 30%;
+    }
+    .col-about-banner {
+        margin-bottom: -520px;
+    }
+    .block-margin {
+        margin-left: 0%;
+        margin-top: 0%;
+    }
+    .card-service {
+        margin-top: 15%;
+    }
+    .card-villa {
+        width: 100%;
+        border-radius: 10px;
+    }
+    .card-activity {
+        margin-top: 15%;
+    }
+    .list-social-media {
+        margin-left: -15%;
+    }
+    #swiper-gallery .swiper-slide img {
+        margin-left: -2% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-villa {
+        width: 100%;
+        border-radius: 10px;
+    }
+}
+
+@font-face {
+    font-family: "futura";
+    src: url("../font/futur.ttf") format("truetype"); /* Safari, Android, iOS */
+}

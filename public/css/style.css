@@ -1,0 +1,63 @@
+.center-div {
+    margin-top: 10rem;
+}
+.img-resize {
+    width: 50%;
+}
+.light-mreaves {
+    font-family: "light-mreaves";
+}
+.heavy-mreaves {
+    font-family: "heavy-mreaves";
+}
+
+@media (max-width: 576px) {
+    .center-div {
+        margin-top: 8rem;
+    }
+    .img-resize {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .center-div {
+        margin-top: 13rem;
+    }
+    .img-resize {
+        width: 100%;
+    }
+    .bali-lids-text {
+        font-size: 70px;
+    }
+    .open-early-text {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 992px) {
+    .center-div {
+        margin-top: 7rem;
+    }
+    .img-resize {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .center-div {
+        margin-top: 7rem;
+    }
+    .img-resize {
+        width: 50%;
+    }
+}
+
+@font-face {
+    font-family: "light-mreaves";
+    src: url("../font/MrEavesXLModOT-Light.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+@font-face {
+    font-family: "heavy-mreaves";
+    src: url("../font/MrEavesXLModOT-HeavyItalic.ttf") format("truetype"); /* Safari, Android, iOS */
+}
