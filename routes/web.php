@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DescriptionController;
 use App\Http\Controllers\SocialMediaController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,15 @@ Route::group(['middleware' => ['auth', 'role']], function () {
         Route::post('/show',[SocialMediaController::class,'show'])->name('show');
         Route::post('/edit',[SocialMediaController::class,'edit'])->name('edit');
         Route::post('/destroy',[SocialMediaController::class,'destroy'])->name('destroy');
+    });
+    Route::group(['prefix' => 'testimonial', 'as' => 'testimonial.'], function() {
+        Route::get('/',[TestimonialController::class,'index'])->name('index');
+        Route::post('/store',[TestimonialController::class,'store'])->name('store');
+        Route::post('/show',[TestimonialController::class,'show'])->name('show');
+        Route::post('/edit',[TestimonialController::class,'edit'])->name('edit');
+        Route::post('/destroy',[TestimonialController::class,'destroy'])->name('destroy');
+        Route::post('/priority',[TestimonialController::class,'priority'])->name('priority');
+        Route::post('/unpriority',[TestimonialController::class,'unpriority'])->name('unpriority');
     });
 });
 // END ROUTE ADMIN

@@ -268,7 +268,26 @@
                 </div>
             </div>
             <div class="row">
-                <h5 class="btn btn-outline-success sanshita-swashed mx-auto">Coming Soon</h5>
+                @if (count($testimonials) > 0)
+                    @foreach ($testimonials as $testimonial)
+                        <div class="col-md-4">
+                            <div class="card shadow" style="border-radius: 15px">
+                                <img src="{{asset('uploads/testimonial/photo/'.$testimonial->url)}}" class="rounded-circle d-block mx-auto mt-4" alt="{{$testimonial->id}}" width="80" height="80">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{$testimonial->name}}</h5>
+                                    <p class="text-muted text-center" style="font-size: 12px">{{$testimonial->position}}</p>
+                                    <p class="card-text text-center">
+                                        <span class="font-weight-bold pacifico" style="font-size: 25px; color: grey">"</span>
+                                        {{$testimonial->testimonial}}
+                                        <span class="font-weight-bold pacifico" style="font-size: 25px; color: grey">"</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <h5 class="btn btn-outline-success sanshita-swashed mx-auto">Coming Soon</h5>
+                @endif
             </div>
         </div>
     </section>

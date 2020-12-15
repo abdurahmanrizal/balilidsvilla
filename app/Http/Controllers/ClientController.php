@@ -10,6 +10,7 @@ use App\Models\Blog;
 use App\Models\Gallery;
 use App\Models\SocialMedia;
 use App\Models\Banner;
+use App\Models\Testimonial;
 class ClientController extends Controller
 {
     public function index()
@@ -22,7 +23,8 @@ class ClientController extends Controller
            'blogs'       => $this->getBlog(),
            'galleries'   => $this->getGallery(),
            'social_medias' => $this->socialMedia(),
-           'banners'     => $this->getBanner()
+           'banners'     => $this->getBanner(),
+           'testimonials' => $this->getTestimonial()
        ]);
     }
 
@@ -69,5 +71,10 @@ class ClientController extends Controller
     {
         $banners = Banner::all();
         return $banners;
+    }
+    private function getTestimonial()
+    {
+        $testimonials = Testimonial::limit(3)->get();
+        return $testimonials;
     }
 }
