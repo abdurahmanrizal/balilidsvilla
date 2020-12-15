@@ -161,6 +161,12 @@
                                 Social Media
                             </a>
                         </li>
+                        <li>
+                            <a href="{{route('testimonial.index')}}">
+                                <i class="fa fa-users"></i>
+                               Testimonial
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
