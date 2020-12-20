@@ -85,6 +85,12 @@ a.villa-hover:hover {
     #swiper-gallery .swiper-slide img {
         margin-left: -2% !important;
     }
+    #swiper-testimonial .swiper-slide.swiper-slide-next .card {
+        margin-left: -4rem !important;
+    }
+    #swiper-testimonial .swiper-slide.swiper-slide-active .card {
+        margin-left: 4% !important;
+    }
 }
 
 @media (min-width: 768px) {

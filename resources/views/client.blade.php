@@ -34,7 +34,7 @@
                                 </p>
                             @else
                                 <p class="text-center text-light mt-2">
-                                    {{$description}}
+                                    {!! $description !!}
                                 </p>
                             @endif
 
@@ -67,7 +67,7 @@
                                     <iframe class="embed-responsive-item" src="{{$villa->resort_gallery->url}}" allowfullscreen></iframe>
                                 </div>
                                 @endif
-                                <div class="card shadow mb-2 card-villa card-villa" style="margin-top:-7.5rem !important; background-color: rgba(0,0,0,0.4); height:7.5rem; border-radius:15px">
+                                <div class="card shadow mb-2 card-villa card-villa" style="margin-top:-8.5rem !important; background-color: rgba(0,0,0,0.4); height:8.5rem; border-radius:15px">
                                     <div class="card-body">
                                         <h5 class="font-weight-bold text-light">{{$villa->name}}</h5>
                                         <h6 class="font-weight-bold text-light">{{'IDR ' . number_format($villa->price, 0, ',', '.') . ' / Night'}}</h6>
@@ -264,10 +264,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="font-weight-bold sanshita-swashed orange">Testimonial</h2>
+                    <h2 class="font-weight-bold sanshita-swashed orange">Our Guest Experience</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="row-testimonial">
                 @if (count($testimonials) > 0)
                     @foreach ($testimonials as $testimonial)
                         <div class="col-md-4">
@@ -297,75 +297,126 @@
         $(function() {
             const listSocialMediaEL = document.querySelector('.list-social-media')
             const gallery = document.querySelector('.section-gallery')
+            const testimonial = document.querySelector('#row-testimonial')
             if(/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-
                 listSocialMediaEL.innerHTML = `
-                <ul style="list-style:none">
-                    <li class="mb-3">
-                        <img src="{{asset('images/asset/facebook.png')}}" alt="facebook-bali-lids-villa" width="25">
-                        <span class="ml-1">Bali Lids Villa</span>
-                    </li>
-                    <li class="mb-3">
-                        <img src="{{asset('images/asset/instagram.png')}}" alt="instagram-bali-lids-villa" width="25">
-                        <span class="ml-1">Bali Lids Villa</span>
-                    </li>
-                    <li class="mb-3">
-                        <img src="{{asset('images/asset/whatsapp.png')}}" alt="whatsapp-bali-lids-villa" width="25">
-                        <span class="ml-1">0000-0000-0000</span>
-                    </li>
-                </ul>
+                    <ul style="list-style:none">
+                        @foreach ($social_medias as $social_media)
+                            @if($social_media->item_social_media == 'facebook')
+                                <li class="mb-3">
+                                    <img src="{{asset('images/asset/facebook.png')}}" alt="facebook-bali-lids-villa" width="20">
+                                    <a href="https://www.facebook.com/{{$social_media->name_social_media}}" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'instagram')
+                                <li class="mb-3">
+                                    <img src="{{asset('images/asset/instagram.png')}}" alt="facebook-bali-lids-villa" width="20">
+                                    <a href="https://www.instagram.com/{{$social_media->name_social_media}}" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'whatsapp')
+                                <li class="mb-3">
+                                    @php
+                                        $conv_number = preg_replace('/^0/','62', $social_media->name_social_media);
+                                    @endphp
+                                    <img src="{{asset('images/asset/whatsapp.png')}}" alt="whatsapp-bali-lids-villa" width="20">
+                                    <a href="http://api.whatsapp.com/send?phone={{$conv_number}}&text=Halo%20Customer%20Service%20Satu" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'tiktok')
+                                <li class="mb-3">
+                                    <i class="fab fa-tiktok"></i>
+                                    @php
+                                        $urlTiktok = 'https://www.tiktok.com/@'.$social_media->name_social_media.'';
+                                    @endphp
+                                    <a href="{{$urlTiktok}}" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'youtube')
+                                <li class="mb-3">
+                                    <i class="fab fa-youtube"></i>
+                                    <a href="https://www.youtube.com/channel/{{$social_media->name_social_media}}" class="text-dark" target="_blank">Bali Lids Villa & Adventures</a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
                 `
                 gallery.innerHTML = `
                     <div class="swiper-container mt-2" id="swiper-gallery">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail" width="300">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail" width="300">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail" width="300">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('images/asset/bali-lids-villa-2.png')}}" alt="banner-png-1" class="img-fluid ml-2 mb-2 img-thumbnail" width="300">
-                            </div>
+                            @foreach ($galleries as $gallery)
+                                <div class="swiper-slide">
+                                    <img src="{{asset('uploads/gallery/photo/'.$gallery->url)}}" alt="{{$gallery->id}}" class="img-fluid img-thumbnail">
+                                </div>
+                            @endforeach
+
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
                 `
+                testimonial.innerHTML = `
+                    @if (count($testimonials) > 0)
+                        <div class="swiper-container" id="swiper-testimonial">
+                            <div class="swiper-wrapper">
+                                @foreach ($testimonials as $testimonial)
+                                    <div class="swiper-slide">
+                                        <div class="card shadow mb-2 ml-2" style="border-radius: 15px; width: 20rem">
+                                            <img src="{{asset('uploads/testimonial/photo/'.$testimonial->url)}}" class="rounded-circle d-block mx-auto mt-4" alt="{{$testimonial->id}}" width="80" height="80">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center">{{$testimonial->name}}</h5>
+                                                <p class="text-muted text-center" style="font-size: 12px">{{$testimonial->position}}</p>
+                                                <p class="card-text text-center">
+                                                    <span class="font-weight-bold pacifico" style="font-size: 25px; color: grey">"</span>
+                                                    {{$testimonial->testimonial}}
+                                                    <span class="font-weight-bold pacifico" style="font-size: 25px; color: grey">"</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                @endforeach
+                            </div>
+                        </div>
+
+                    @else
+                        <h5 class="btn btn-outline-success sanshita-swashed mx-auto">Coming Soon</h5>
+                    @endif
+                `
             }else if(/Ipad/i.test(navigator.userAgent)) {
                 listSocialMediaEL.innerHTML = `
                 <ul style="list-style:none">
-                    <li class="mb-3">
-                        <img src="{{asset('images/asset/facebook.png')}}" alt="facebook-bali-lids-villa" width="25">
-                        <span class="ml-1">Bali Lids Villa</span>
-                    </li>
-                    <li class="mb-3">
-                        <img src="{{asset('images/asset/instagram.png')}}" alt="instagram-bali-lids-villa" width="25">
-                        <span class="ml-1">Bali Lids Villa</span>
-                    </li>
-                    <li class="mb-3">
-                        <img src="{{asset('images/asset/whatsapp.png')}}" alt="whatsapp-bali-lids-villa" width="25">
-                        <span class="ml-1">0000-0000-0000</span>
-                    </li>
-                </ul>
+                        @foreach ($social_medias as $social_media)
+                            @if($social_media->item_social_media == 'facebook')
+                                <li class="mb-3">
+                                    <img src="{{asset('images/asset/facebook.png')}}" alt="facebook-bali-lids-villa" width="20">
+                                    <a href="https://www.facebook.com/{{$social_media->name_social_media}}" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'instagram')
+                                <li class="mb-3">
+                                    <img src="{{asset('images/asset/instagram.png')}}" alt="facebook-bali-lids-villa" width="20">
+                                    <a href="https://www.instagram.com/{{$social_media->name_social_media}}" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'whatsapp')
+                                <li class="mb-3">
+                                    @php
+                                        $conv_number = preg_replace('/^0/','62', $social_media->name_social_media);
+                                    @endphp
+                                    <img src="{{asset('images/asset/whatsapp.png')}}" alt="whatsapp-bali-lids-villa" width="20">
+                                    <a href="http://api.whatsapp.com/send?phone={{$conv_number}}&text=Halo%20Customer%20Service%20Satu" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'tiktok')
+                                <li class="mb-3">
+                                    <i class="fab fa-tiktok"></i>
+                                    @php
+                                        $urlTiktok = 'https://www.tiktok.com/@'.$social_media->name_social_media.'';
+                                    @endphp
+                                    <a href="{{$urlTiktok}}" class="text-dark" target="_blank">{{$social_media->name_social_media}}</a>
+                                </li>
+                            @elseif($social_media->item_social_media == 'youtube')
+                                <li class="mb-3">
+                                    <i class="fab fa-youtube"></i>
+                                    <a href="https://www.youtube.com/channel/{{$social_media->name_social_media}}" class="text-dark" target="_blank">Bali Lids Villa & Adventures</a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
                 `
             }
             var swiper = new Swiper('#swiper-banner', {
@@ -423,8 +474,8 @@
                 }
             });
             var swiperTestimonial = new Swiper('#swiper-testimonial', {
-                slidesPerView: 3,
-                spaceBetween: 10,
+                slidesPerView: 1,
+                spaceBetween: 30,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -432,7 +483,7 @@
                 breakpoints : {
                     320: {
                         slidesPerView: 1,
-                        spaceBetweenSlides: 30
+                        spaceBetweenSlides: 50
                     },
                     768: {
                         slidesPerView: 3,
